@@ -8,8 +8,14 @@
   },
   "private": true,
   "dependencies": {
+    "@types/node": "^22.13.16",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "pg": "^8.14.1"
+    "pg": "^8.14.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.11"
   }
 }
