@@ -9,8 +9,12 @@
   "private": true,
   "dependencies": {
     "@types/node": "^22.13.16",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.14.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
