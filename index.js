@@ -182,6 +182,50 @@ app.delete("/appointment/:id", async (req, res) => {
     }
 });
 
+// Get all appointments for a specific patient
+app.get("/appointments/patient/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await pool.query(
+            `SELECT * FROM appointments WHERE patient_id = $1`,
+            [id]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: "No appointments found for the given patient." });
+        }
+
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error("Error fetching appointments for patient:", error);
+        res.status(500).json({ message: "Failed to fetch appointments for the patient.", error: error.message });
+    }
+});
+
+// Get all appointments for a specific doctor
+app.get("/appointments/doctor/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await pool.query(
+            `SELECT * FROM appointments WHERE doctor_id = $1`,
+            [id]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: "No appointments found for the given doctor." });
+        }
+
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error("Error fetching appointments for doctor:", error);
+        res.status(500).json({ message: "Failed to fetch appointments for the doctor.", error: error.message });
+    }
+});
+
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
