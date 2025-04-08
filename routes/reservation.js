@@ -1,5 +1,18 @@
-// Add an appointment
-app.post("/appointment", async (req, res) => {
+import express from "express";
+import pkg from "pg";
+
+const router = express.Router();
+const { Pool } = pkg;
+
+const pool = new Pool({
+    user: process.env.DB_USER || "clinic_admin",
+    host: process.env.DB_HOST || "localhost",
+    database: process.env.DB_NAME || "wet_clinic",
+    password: process.env.DB_PASS || "secure_password",
+    port: process.env.DB_PORT || 5432,
+});
+
+router.post("/appointment", async (req, res) => {
     const { doctor_id, patient_id, appointment_date } = req.body;
 
     if (!doctor_id || !patient_id || !appointment_date) {
@@ -20,8 +33,7 @@ app.post("/appointment", async (req, res) => {
     }
 });
 
-// Get all appointments
-app.get("/appointments", async (req, res) => {
+router.get("/appointments", async (req, res) => {
     try {
         const result = await pool.query(`SELECT * FROM appointments`);
         res.status(200).json(result.rows);
@@ -31,8 +43,7 @@ app.get("/appointments", async (req, res) => {
     }
 });
 
-// Update an appointment
-app.put("/appointment/:id", async (req, res) => {
+router.put("/appointment/:id", async (req, res) => {
     const { id } = req.params;
     const { doctor_id, patient_id, appointment_date } = req.body;
 
@@ -76,8 +87,7 @@ app.put("/appointment/:id", async (req, res) => {
     }
 });
 
-// Delete an appointment
-app.delete("/appointment/:id", async (req, res) => {
+router.delete("/appointment/:id", async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -92,3 +102,5 @@ app.delete("/appointment/:id", async (req, res) => {
         res.status(500).json({ message: "Failed to delete appointment." });
     }
 });
+
+export const reservationRoutes = router;

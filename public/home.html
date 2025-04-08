@@ -2,22 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h2>Welcome to Wet Clinic!</h2>
-<p>You are now logged in.</p>
-
-<div class="nav-buttons">
-    <button onclick="window.location.href='appointments.html'">View Appointments</button>
-    <button onclick="window.location.href='profile.html'">Profile</button>
-    <button onclick="window.location.href='index.html'">Logout</button>
-</div>
+<h2>Welcome, <span id="username"></span></h2>
+<button id="logout">Logout</button>
 
 <script>
-    // Fetch user details or personalize the page (if needed)
+    document.addEventListener("DOMContentLoaded", function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+            window.location.href = "index.html";
+        }
+        document.getElementById("username").textContent = user.username;
+
+        document.getElementById("logout").addEventListener("click", () => {
+            localStorage.removeItem("user");
+            window.location.href = "index.html";
+        });
+    });
 </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   db:
     image: postgres:latest
@@ -8,18 +8,9 @@ services:
       POSTGRES_PASSWORD: secure_password
       POSTGRES_DB: wet_clinic
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
-      - db-data:/var/lib/postgresql/data
-  server:
-    build:
-      context: .
-    container_name: wetclinic_server
-    ports:
-      - '3001:3001'
-    volumes:
-      - .:/app
-    depends_on:
-      - db
+      - db_data:/var/lib/postgresql/data
+
 volumes:
-  db-data:
+  db_data:
