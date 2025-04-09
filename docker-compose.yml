@@ -1,16 +1,13 @@
-version: "3.8"
 services:
   db:
     image: postgres:latest
-    container_name: wetclinic_db
     environment:
-      POSTGRES_USER: clinic_admin
-      POSTGRES_PASSWORD: secure_password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
       POSTGRES_DB: wet_clinic
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-
 volumes:
   db_data:
