@@ -1,31 +1,17 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 50px;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-buttons {
-    margin-bottom: 20px;
+.buttons {
+    margin-top: 20px;
 }
 
 button {
     padding: 10px 20px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    font-size: 16px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.section {
-    display: none;
-    text-align: left;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 5px;
 }
